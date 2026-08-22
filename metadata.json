@@ -1,0 +1,6 @@
+{
+  "name": "Sai Dental Care",
+  "description": "Sai Dental Care in Bengaluru East provides personalized dental care with a focus on oral health, patient comfort, and individualized treatment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
