@@ -8,9 +8,11 @@ import {
   FileText, 
   CheckCircle2, 
   AlertCircle,
-  ShieldCheck
+  ShieldCheck,
+  MessageCircle
 } from 'lucide-react';
 import { AppointmentFormData } from '../types';
+import { clinicConfig, getWhatsAppUrl, getPhoneUrl } from '../config/clinicData';
 
 interface AppointmentSectionProps {
   initialReason?: string;
@@ -114,8 +116,34 @@ export const AppointmentSection: React.FC<AppointmentSectionProps> = ({
               Thank you, {formData.fullName}.
             </p>
             <p className="text-slate-600">
-              Your appointment request has been received. The clinic will contact you at <strong className="font-bold text-[#004a5c]">{formData.phone}</strong> to confirm schedule availability.
+              Your appointment request has been recorded. Our clinic will contact you at <strong className="font-bold text-[#004a5c]">{formData.phone}</strong> to confirm schedule availability.
             </p>
+          </div>
+
+          <div className="max-w-md mx-auto mb-6 p-4 rounded-xl bg-slate-50 border border-slate-100 text-left">
+            <p className="text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">
+              Want immediate confirmation?
+            </p>
+            <div className="flex flex-col sm:flex-row gap-2.5">
+              <a
+                href={getWhatsAppUrl(`Hello Sai Dental Care, I have requested an appointment.\nName: ${formData.fullName}\nPhone: ${formData.phone}\nDate: ${formData.preferredDate} (${formData.preferredTime})\nReason: ${formData.reasonForVisit}${formData.message ? `\nNote: ${formData.message}` : ''}`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-[#0d9488] hover:bg-[#0f766e] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors"
+                id="appointment-success-whatsapp-btn"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>Send via WhatsApp</span>
+              </a>
+              <a
+                href={getPhoneUrl()}
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-slate-700 text-xs font-bold px-4 py-2.5 rounded-lg border border-slate-200 transition-colors"
+                id="appointment-success-call-btn"
+              >
+                <Phone className="w-4 h-4 text-[#004a5c]" />
+                <span>Call {clinicConfig.contact.phone}</span>
+              </a>
+            </div>
           </div>
 
           <div className="text-xs text-slate-400 max-w-sm mx-auto mb-6">

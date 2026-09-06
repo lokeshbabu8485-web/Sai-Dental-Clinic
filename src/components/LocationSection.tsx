@@ -4,12 +4,14 @@ import {
   Phone, 
   MessageCircle, 
   Clock, 
-  Compass, 
   Calendar, 
   ExternalLink,
-  Building2
+  Building2,
+  Navigation,
+  ShieldCheck,
+  CheckCircle2
 } from 'lucide-react';
-import { clinicConfig, isPlaceholder, getWhatsAppUrl, getPhoneUrl } from '../config/clinicData';
+import { clinicConfig, getWhatsAppUrl, getPhoneUrl } from '../config/clinicData';
 import { AppointmentSection } from './AppointmentSection';
 
 interface LocationSectionProps {
@@ -18,249 +20,175 @@ interface LocationSectionProps {
 
 export const LocationSection: React.FC<LocationSectionProps> = ({ onOpenBooking }) => {
   return (
-    <section id="contact" className="py-20 bg-white border-b border-slate-100">
+    <section id="location" className="py-20 bg-white border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0fdfa] border border-teal-100 text-[#0d9488] text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-teal-50 border border-teal-200/80 text-[#0d9488] text-xs font-bold tracking-wider uppercase mb-3">
             <Building2 className="w-3.5 h-3.5" />
-            <span>Clinic Location & Contact</span>
+            <span>Clinic Location & Easy Access</span>
           </div>
 
           <h2 
             id="contact-heading"
-            className="text-3xl sm:text-4xl font-extrabold text-[#1f2937] tracking-tight mb-4"
+            className="text-3xl sm:text-4xl font-extrabold text-[#004a5c] tracking-tight mb-4"
           >
-            Ready to Take Care of <span className="text-[#004a5c]">Your Smile?</span>
+            Visit Sai Dental Care in <span className="text-[#ea580c]">Bengaluru East</span>
           </h2>
 
-          <p className="text-slate-500 text-base sm:text-lg leading-relaxed">
-            Visit our clinic in Bengaluru East or send us an appointment enquiry today.
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+            Conveniently located for residents of Bengaluru East and neighboring communities. Walk in or reserve your slot in advance.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Clinic Contact Details & Map (7 cols on lg) */}
-          <div className="lg:col-span-7 space-y-8">
+          {/* Left Column: Contact cards & map (7 cols) */}
+          <div className="lg:col-span-7 space-y-6">
             
-            {/* Contact Information Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* 3 Contact Quick-Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               
-              {/* Address Card */}
-              <div className="p-6 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col justify-between shadow-xs">
+              {/* Phone Card */}
+              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 shadow-2xs flex flex-col justify-between">
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-[#f0fdfa] text-[#0d9488] border border-teal-100 flex items-center justify-center mb-3">
-                    <MapPin className="w-5 h-5" />
+                  <div className="w-10 h-10 rounded-xl bg-orange-100 text-[#ea580c] flex items-center justify-center mb-3">
+                    <Phone className="w-5 h-5 fill-current" />
                   </div>
-                  <h3 className="font-bold text-[#1f2937] text-base mb-1">
-                    Clinic Address
+                  <h3 className="font-bold text-slate-900 text-sm mb-1">
+                    Phone Contact
                   </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">
-                    {clinicConfig.address.street},<br />
-                    {clinicConfig.address.locality},<br />
-                    {clinicConfig.address.state}, {clinicConfig.address.country}
+                  <p className="text-xs text-slate-500 mb-3">
+                    Call directly for urgent pain relief or booking
                   </p>
-                  <div className="mt-2 text-[11px] font-mono text-slate-400">
-                    Lat: {clinicConfig.address.coordinates.latitude}, Lng: {clinicConfig.address.coordinates.longitude}
-                  </div>
                 </div>
-
-                <div className="mt-4 pt-3 border-t border-slate-200/60">
-                  <a
-                    href={clinicConfig.address.googleMapsDirectionsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-bold text-[#0d9488] hover:text-[#004a5c] inline-flex items-center gap-1.5"
-                    id="contact-directions-link"
-                  >
-                    <span>Get Driving Directions</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
+                <a
+                  href={getPhoneUrl()}
+                  className="font-bold text-[#ea580c] hover:text-[#c2410c] text-xs flex items-center gap-1"
+                >
+                  <span>+91 9886713878</span>
+                </a>
               </div>
 
-              {/* Consultation Timings Card */}
-              <div className="p-6 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col justify-between shadow-xs">
+              {/* Hours Card */}
+              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 shadow-2xs flex flex-col justify-between">
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-[#f0fdfa] text-[#0d9488] border border-teal-100 flex items-center justify-center mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-teal-100 text-[#0d9488] flex items-center justify-center mb-3">
                     <Clock className="w-5 h-5" />
                   </div>
-                  <h3 className="font-bold text-[#1f2937] text-base mb-1">
+                  <h3 className="font-bold text-slate-900 text-sm mb-1">
                     Opening Hours
                   </h3>
-                  <div className="text-sm text-slate-500 space-y-1">
-                    {isPlaceholder(clinicConfig.contact.hours) ? (
-                      <div>
-                        <p className="font-bold text-[#1f2937]">By Appointment</p>
-                        <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                          Consultation schedules are organized prior to your visit. Please submit a request to confirm timing.
-                        </p>
-                      </div>
-                    ) : (
-                      <p>{clinicConfig.contact.hours}</p>
-                    )}
-                  </div>
+                  <p className="text-xs text-slate-700 font-semibold mb-1">
+                    10:00 AM - 8:00 PM
+                  </p>
+                  <p className="text-[11px] text-slate-400">
+                    Open all 7 Days (Mon - Sun)
+                  </p>
                 </div>
-
-                <div className="mt-4 pt-3 border-t border-slate-200/60">
-                  <span className="text-xs font-bold text-slate-400">
-                    Prior appointment recommended
-                  </span>
-                </div>
-              </div>
-
-              {/* Phone Card */}
-              <div className="p-6 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col justify-between shadow-xs">
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-[#f0fdfa] text-[#0d9488] border border-teal-100 flex items-center justify-center mb-3">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-bold text-[#1f2937] text-base mb-1">
-                    Phone Consultation
-                  </h3>
-                  <div className="text-sm text-slate-500">
-                    {isPlaceholder(clinicConfig.contact.phone) ? (
-                      <p className="text-xs text-slate-400 italic">
-                        Official contact number will be updated shortly
-                      </p>
-                    ) : (
-                      <a href={getPhoneUrl()} className="font-bold text-slate-800 hover:text-[#004a5c]">
-                        {clinicConfig.contact.phone}
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-slate-200/60">
-                  {isPlaceholder(clinicConfig.contact.phone) ? (
-                    <button
-                      onClick={onOpenBooking}
-                      className="text-xs font-bold text-[#0d9488] hover:text-[#004a5c]"
-                    >
-                      Request Callback →
-                    </button>
-                  ) : (
-                    <a href={getPhoneUrl()} className="text-xs font-bold text-[#0d9488] hover:text-[#004a5c]">
-                      Call Now →
-                    </a>
-                  )}
-                </div>
+                <span className="text-[11px] font-bold text-emerald-600 mt-2">
+                  • Available Today
+                </span>
               </div>
 
               {/* WhatsApp Card */}
-              <div className="p-6 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col justify-between shadow-xs">
+              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 shadow-2xs flex flex-col justify-between">
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-[#f0fdfa] text-[#0d9488] border border-teal-100 flex items-center justify-center mb-3">
-                    <MessageCircle className="w-5 h-5" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3">
+                    <MessageCircle className="w-5 h-5 fill-current" />
                   </div>
-                  <h3 className="font-bold text-[#1f2937] text-base mb-1">
-                    WhatsApp Enquiry
+                  <h3 className="font-bold text-slate-900 text-sm mb-1">
+                    WhatsApp Chat
                   </h3>
-                  <div className="text-sm text-slate-500">
-                    {isPlaceholder(clinicConfig.contact.whatsapp) ? (
-                      <p className="text-xs text-slate-400 italic">
-                        WhatsApp enquiry channel will be activated shortly
-                      </p>
-                    ) : (
-                      <a 
-                        href={getWhatsAppUrl()} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="font-bold text-slate-800 hover:text-emerald-700"
-                      >
-                        {clinicConfig.contact.whatsapp}
-                      </a>
-                    )}
-                  </div>
+                  <p className="text-xs text-slate-500 mb-3">
+                    Instant appointment booking & enquiries
+                  </p>
                 </div>
-
-                <div className="mt-4 pt-3 border-t border-slate-200/60">
-                  <a
-                    href={getWhatsAppUrl()}
-                    target={isPlaceholder(clinicConfig.contact.whatsapp) ? '_self' : '_blank'}
-                    rel="noopener noreferrer"
-                    className="text-xs font-bold text-[#0d9488] hover:text-[#004a5c]"
-                  >
-                    Open WhatsApp Chat →
-                  </a>
-                </div>
+                <a
+                  href={getWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-emerald-600 hover:text-emerald-700 text-xs flex items-center gap-1"
+                >
+                  <span>Message Now</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
 
             </div>
 
-            {/* Quick Action Buttons Row */}
-            <div className="flex flex-wrap items-center gap-3">
-              <a
-                href={clinicConfig.address.googleMapsDirectionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="contact-get-directions-btn"
-                className="inline-flex items-center gap-2 bg-[#004a5c] hover:bg-[#003846] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-[#004a5c22] transition-colors"
-              >
-                <Compass className="w-4 h-4" />
-                <span>Get Directions (Google Maps)</span>
-              </a>
-
-              <a
-                href={getWhatsAppUrl()}
-                target={isPlaceholder(clinicConfig.contact.whatsapp) ? '_self' : '_blank'}
-                rel="noopener noreferrer"
-                id="contact-whatsapp-btn"
-                className="inline-flex items-center gap-2 bg-[#0d9488] hover:bg-[#0f766e] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-md shadow-teal-900/10 transition-colors"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>WhatsApp Enquiries</span>
-              </a>
-
-              <button
-                onClick={onOpenBooking}
-                id="contact-book-appointment-btn"
-                className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl transition-colors"
-              >
-                <Calendar className="w-4 h-4 text-[#0d9488]" />
-                <span>Book Appointment</span>
-              </button>
-            </div>
-
-            {/* Interactive Location Map Container */}
-            <div 
-              id="clinic-map-container"
-              className="rounded-2xl border border-slate-100 overflow-hidden shadow-sm bg-slate-100 relative h-72 sm:h-80"
-            >
-              <iframe
-                title="Sai Dental Care Location Map"
-                src={clinicConfig.address.embedMapUrl}
-                className="w-full h-full border-0"
-                loading="lazy"
-                aria-label="Map showing Sai Dental Care in Bengaluru East"
-              />
-              
-              {/* Map Floating Card */}
-              <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md rounded-xl p-3.5 border border-slate-100 shadow-md text-xs z-10 max-w-xs">
-                <div className="font-bold text-[#1f2937] flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#0d9488]" />
-                  <span>Sai Dental Care</span>
+            {/* Address & Google Maps Visual Card */}
+            <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-2xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-slate-200">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-11 h-11 rounded-xl bg-[#004a5c] text-white flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-base">
+                      Sai Dental Care, Bengaluru East
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+                      85, 7th Cross Road, Bengaluru East, Karnataka 560016
+                    </p>
+                  </div>
                 </div>
-                <div className="text-slate-500 text-[11px] mt-0.5">
-                  85, 7th Cross Road, Bengaluru East
-                </div>
+
                 <a
                   href={clinicConfig.address.googleMapsDirectionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-1.5 inline-block text-[11px] font-bold text-[#0d9488] hover:underline"
+                  className="inline-flex items-center gap-2 bg-[#004a5c] hover:bg-[#003846] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-xs shrink-0"
+                  id="google-maps-action-btn"
                 >
-                  View full map & directions →
+                  <Navigation className="w-3.5 h-3.5" />
+                  <span>Navigate in Google Maps</span>
                 </a>
+              </div>
+
+              {/* Visual Map Interactive Placeholder Frame */}
+              <div className="relative w-full h-64 bg-slate-200 rounded-xl overflow-hidden border border-slate-300 flex items-center justify-center group">
+                <iframe
+                  title="Sai Dental Care Location Map"
+                  src="https://maps.google.com/maps?q=12.9856,77.6256&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+                <div className="absolute bottom-3 right-3">
+                  <a
+                    href={clinicConfig.address.googleMapsDirectionsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white/95 hover:bg-white text-slate-800 text-[11px] font-bold px-3 py-1.5 rounded-lg shadow-md border border-slate-200 flex items-center gap-1.5 transition-all"
+                  >
+                    <span>Open in Maps App</span>
+                    <ExternalLink className="w-3 h-3 text-[#ea580c]" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Ground Floor Accessible</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Two-Wheeler & Car Parking Nearby</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#0d9488]" />
+                  <span>Sanitized Clinical Environment</span>
+                </div>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Appointment Form Component (5 cols on lg) */}
-          <div className="lg:col-span-5">
+          {/* Right Column: Appointment Form (5 cols) */}
+          <div className="lg:col-span-5" id="contact">
             <AppointmentSection />
           </div>
 

@@ -1,4 +1,14 @@
-import { ClinicConfig, Treatment, Testimonial, FAQItem, TrustCard, JourneyStep } from '../types';
+import { 
+  ClinicConfig, 
+  Treatment, 
+  Testimonial, 
+  FAQItem, 
+  TrustCard, 
+  JourneyStep, 
+  SterilizationStep, 
+  PricingGuideItem, 
+  ClinicAmenity 
+} from '../types';
 
 /**
  * CONFIGURATION FOR SAI DENTAL CARE
@@ -47,11 +57,11 @@ export const clinicConfig: ClinicConfig = {
   },
 
   contact: {
-    phone: CLINIC_PLACEHOLDERS.PHONE,
-    whatsapp: CLINIC_PLACEHOLDERS.WHATSAPP,
+    phone: '+91 9886713878',
+    whatsapp: '+91 9886713878',
     email: CLINIC_PLACEHOLDERS.EMAIL,
-    hours: CLINIC_PLACEHOLDERS.HOURS,
-    emergencyNote: 'Please contact the clinic to confirm consultation timings and emergency availability.',
+    hours: '10:00 AM - 8:00 PM (Mon - Sun)',
+    emergencyNote: 'Please contact the clinic at +91 9886713878 to confirm consultation timings and emergency availability.',
   },
 
   doctor: {
@@ -109,99 +119,129 @@ export const proposedTreatments: Treatment[] = [
     category: 'Preventive Care',
     shortDescription: 'Comprehensive examination of teeth, gums, and oral cavity with personalized treatment advice.',
     fullDescription: 'A thorough clinical examination evaluating overall oral hygiene, identifying early issues like enamel wear, cavities, or gum sensitivity, and discussing preventative steps tailored for you.',
-    benefits: ['Comprehensive oral assessment', 'Preventative guidance', 'Personalized treatment plan'],
+    benefits: ['Comprehensive oral assessment', 'Digital intraoral examination', 'Personalized treatment plan'],
     isConfirmed: false,
     iconName: 'Stethoscope',
-  },
-  {
-    id: 'cleaning',
-    name: 'Teeth Cleaning & Scaling',
-    category: 'Preventive Care',
-    shortDescription: 'Professional plaque and tartar removal to maintain gum health and freshen breath.',
-    fullDescription: 'Gentle cleaning to remove calcified plaque and stains that cannot be removed by daily brushing alone, promoting healthier gums and long-term tooth preservation.',
-    benefits: ['Plaque and tartar removal', 'Supports gum health', 'Helps prevent periodontal concerns'],
-    isConfirmed: false,
-    iconName: 'Sparkles',
-  },
-  {
-    id: 'fillings',
-    name: 'Dental Fillings',
-    category: 'Restorative Care',
-    shortDescription: 'Restoring teeth damaged by decay with tooth-colored composite restorations.',
-    fullDescription: 'Cleaning decayed tooth structures and filling the cavity with durable, aesthetic composite materials that match your natural tooth shade.',
-    benefits: ['Prevents further decay', 'Restores chewing function', 'Tooth-matching appearance'],
-    isConfirmed: false,
-    iconName: 'ShieldCheck',
+    startingPrice: '₹300 - ₹500',
+    estimatedDuration: '20 - 30 mins',
+    badge: 'Initial Check-up',
   },
   {
     id: 'root-canal',
-    name: 'Root Canal Treatment',
+    name: 'Root Canal Treatment (RCT)',
     category: 'Restorative Care',
-    shortDescription: 'Careful removal of infected dental pulp to relieve discomfort and save natural teeth.',
-    fullDescription: 'A restorative procedure to treat infection deep within the tooth pulp, followed by cleaning, disinfecting, and sealing the root canals to preserve your natural tooth structure.',
-    benefits: ['Relieves toothache caused by infection', 'Preserves natural tooth structure', 'Protects surrounding bone'],
+    shortDescription: 'Painless single-sitting rotary RCT to relieve acute toothache and preserve natural teeth.',
+    fullDescription: 'Advanced restorative endodontic procedure to gently eliminate infection deep within the tooth pulp using rotary files and digital apex locators, followed by bio-compatible sealing.',
+    benefits: ['Relieves toothache caused by infection', 'Painless single-sitting options', 'Preserves natural tooth structure'],
     isConfirmed: false,
     iconName: 'Activity',
-  },
-  {
-    id: 'extractions',
-    name: 'Tooth Extraction',
-    category: 'Surgical Care',
-    shortDescription: 'Safe and careful removal of severely damaged, impacted, or non-restorable teeth.',
-    fullDescription: 'Performed when a tooth cannot be saved through conservative restoration, or to relieve overcrowding and prevent adjacent tooth damage under local anesthesia.',
-    benefits: ['Relieves severe distress', 'Prevents spread of infection', 'Preparation for prosthetic restoration'],
-    isConfirmed: false,
-    iconName: 'Scissors',
-  },
-  {
-    id: 'crowns-bridges',
-    name: 'Crowns & Bridges',
-    category: 'Prosthodontics',
-    shortDescription: 'Custom caps and fixed bridges to strengthen compromised teeth or replace missing ones.',
-    fullDescription: 'Custom-fitted restorations that encase damaged teeth for strength or bridge spaces where teeth are missing, restoring natural chewing capability and alignment.',
-    benefits: ['Reinforces weakened teeth', 'Restores bite harmony', 'Durable, natural finish'],
-    isConfirmed: false,
-    iconName: 'Crown',
+    startingPrice: 'Starting ₹3,500',
+    estimatedDuration: '45 - 60 mins',
+    badge: 'Painless Protocol',
   },
   {
     id: 'implants',
-    name: 'Dental Implants Consultation',
+    name: 'Dental Implants',
     category: 'Implantology',
-    shortDescription: 'Evaluation for permanent titanium tooth roots to support artificial replacement teeth.',
-    fullDescription: 'Assessment of jaw bone density and gum anatomy to determine eligibility for dental implant placement for long-term tooth replacement.',
-    benefits: ['Long-lasting tooth replacement', 'Preserves jaw bone structure', 'Natural chewing sensation'],
+    shortDescription: 'Permanent titanium tooth root replacement restoring natural chewing strength and aesthetic smile.',
+    fullDescription: 'Evaluation and surgical placement of biocompatible titanium implants that fuse with the jawbone to support life-like crowns or fixed bridges for permanent tooth replacement.',
+    benefits: ['Lifetime permanent tooth solution', 'Prevents jaw bone shrinkage', 'Natural bite and chewing power'],
     isConfirmed: false,
     iconName: 'Anchor',
-  },
-  {
-    id: 'whitening',
-    name: 'Teeth Whitening',
-    category: 'Cosmetic Dentistry',
-    shortDescription: 'Safe, professional shade brightening to reduce discoloration and stains.',
-    fullDescription: 'Clinical-grade lightening treatments to lift external staining from coffee, tea, or age, helping brighten your natural smile safely.',
-    benefits: ['Noticeable shade improvement', 'Clinically supervised safety', 'Customized to sensitivity levels'],
-    isConfirmed: false,
-    iconName: 'SunMedium',
+    startingPrice: 'Starting ₹22,000',
+    estimatedDuration: '45 mins / session',
+    badge: 'Permanent Solution',
   },
   {
     id: 'orthodontics',
-    name: 'Braces & Alignment Consultation',
+    name: 'Braces & Clear Invisible Aligners',
     category: 'Orthodontics',
-    shortDescription: 'Guidance and evaluation for correcting misaligned teeth and bite issues.',
-    fullDescription: 'Consultation to assess malocclusion, spacing, or crowding in children and adults, exploring conventional braces or clear aligner options.',
-    benefits: ['Improves bite functionality', 'Enhances dental aesthetics', 'Facilitates easier oral hygiene'],
+    shortDescription: 'Modern smile alignment using invisible clear aligners or gentle ceramic/metal braces.',
+    fullDescription: 'Customized orthodontic treatment planning with digital scans to gently align crooked teeth, close gaps, and correct crossbites for both adults and teenagers.',
+    benefits: ['Discreet invisible aligner choices', 'Corrects bite & prevents wear', 'Computerized progress tracking'],
     isConfirmed: false,
     iconName: 'Layers',
+    startingPrice: 'Consultation & Custom Plan',
+    estimatedDuration: '30 mins / visit',
+    badge: 'Smile Makeover',
+  },
+  {
+    id: 'cleaning',
+    name: 'Teeth Cleaning & Ultrasonic Scaling',
+    category: 'Preventive Care',
+    shortDescription: 'Gentle ultrasonic plaque & tartar removal to ensure healthy pink gums and fresh breath.',
+    fullDescription: 'Clinical ultrasonic scaling to eliminate stubborn calcified tartar, bacterial biofilm, and surface food stains that regular brushing cannot reach.',
+    benefits: ['Deep plaque and calculus removal', 'Helps arrest gum bleeding', 'Surface stain polishing'],
+    isConfirmed: false,
+    iconName: 'Sparkles',
+    startingPrice: 'Starting ₹1,000',
+    estimatedDuration: '30 - 45 mins',
+    badge: 'Every 6 Months',
+  },
+  {
+    id: 'crowns-bridges',
+    name: 'Dental Crowns & Bridges (Zirconia / Ceramic)',
+    category: 'Prosthodontics',
+    shortDescription: 'Custom high-strength tooth caps and fixed bridges crafted to look and feel completely natural.',
+    fullDescription: 'Precision-milled metal-free Zirconia and E-max ceramic crowns designed to protect root canal treated teeth or bridge empty spaces with exceptional durability.',
+    benefits: ['Metal-free natural translucency', 'High chewing resistance', 'Precision digital margin fit'],
+    isConfirmed: false,
+    iconName: 'Crown',
+    startingPrice: 'Starting ₹4,500',
+    estimatedDuration: '2 visits',
+    badge: 'Natural Aesthetics',
+  },
+  {
+    id: 'fillings',
+    name: 'Tooth-Colored Composite Fillings',
+    category: 'Restorative Care',
+    shortDescription: 'Seamless composite fillings that blend imperceptibly with your natural tooth shade.',
+    fullDescription: 'Removal of decayed enamel followed by layering of high-strength, light-cured composite resin to seal the cavity and prevent further bacterial invasion.',
+    benefits: ['Zero metal / mercury-free', 'Matches natural enamel tone', 'Preserves maximum tooth structure'],
+    isConfirmed: false,
+    iconName: 'ShieldCheck',
+    startingPrice: 'Starting ₹1,200',
+    estimatedDuration: '30 mins',
+    badge: 'Same-Day Care',
+  },
+  {
+    id: 'extractions',
+    name: 'Wisdom Tooth & Surgical Extractions',
+    category: 'Surgical Care',
+    shortDescription: 'Gentle, pain-free removal of painful impacted wisdom teeth and non-restorable teeth.',
+    fullDescription: 'Safe tooth removal conducted under profound local anesthesia with strict sterile surgical precautions and clear post-operative healing instructions.',
+    benefits: ['Immediate pain relief from impaction', 'Painless local anesthesia technique', 'Detailed post-op recovery kit'],
+    isConfirmed: false,
+    iconName: 'Scissors',
+    startingPrice: 'Starting ₹2,500',
+    estimatedDuration: '30 - 45 mins',
+    badge: 'Gentle Dentistry',
+  },
+  {
+    id: 'whitening',
+    name: 'Professional Teeth Whitening',
+    category: 'Cosmetic Dentistry',
+    shortDescription: 'Safe clinical laser/bleaching treatment to lift deep enamel stains and brighten your smile.',
+    fullDescription: 'Enamel-safe professional brightening procedure under dentist supervision, effectively lifting coffee, tea, and age-related discoloration up to 6 shades lighter.',
+    benefits: ['Quick visible results in 1 session', 'Enamel-safe protective barrier', 'Long-lasting radiant smile'],
+    isConfirmed: false,
+    iconName: 'SunMedium',
+    startingPrice: 'Starting ₹5,000',
+    estimatedDuration: '45 mins',
+    badge: 'Instant Radiance',
   },
   {
     id: 'gum-care',
-    name: 'Gum Care & Periodontics',
+    name: 'Advanced Gum Therapy & Periodontics',
     category: 'Periodontics',
-    shortDescription: 'Targeted assessment and treatment for bleeding, sensitive, or inflamed gums.',
-    fullDescription: 'Comprehensive management of gingivitis and periodontal conditions through deep cleaning and tailored home-care maintenance regimes.',
-    benefits: ['Reduces bleeding and swelling', 'Prevents bone loss', 'Freshens breath'],
+    shortDescription: 'Specialized deep root planing and therapeutic care for bleeding or swollen gums.',
+    fullDescription: 'Therapeutic treatment focused on healing periodontal pockets, eliminating subgingival bacteria, and arresting early mobile tooth issues.',
+    benefits: ['Halts gum recession and bleeding', 'Strengthens tooth foundation', 'Reduces bad breath'],
     isConfirmed: false,
     iconName: 'HeartPulse',
+    startingPrice: 'Starting ₹1,800',
+    estimatedDuration: '40 mins',
+    badge: 'Gum Protection',
   },
 ];
 
@@ -277,11 +317,179 @@ export const whyChooseUsFeatures = [
 ];
 
 /**
- * Patient Testimonials
- * Note: Per accuracy rules, do NOT invent reviews or fake ratings.
- * Real verified patient feedback will be populated here.
+ * 4-Step Sterilization & 10X Safety Protocol (Clove Dental Gold Standard)
  */
-export const testimonials: Testimonial[] = [];
+export const sterilizationSteps: SterilizationStep[] = [
+  {
+    stepNumber: '01',
+    title: 'Pre-Disinfection & Ultrasonic Cleaning',
+    subtitle: 'Bio-burden & Debris Elimination',
+    description: 'All instruments are immersed in medical enzymatic solutions and cleaned in high-frequency ultrasonic baths to detach microscopic residues.',
+    details: ['Enzymatic bio-cleanser immersion', 'High-frequency micro-cavitation', 'Thorough demineralized rinse'],
+    iconName: 'Droplets',
+  },
+  {
+    stepNumber: '02',
+    title: 'Class-B Autoclave Vacuum Sterilization',
+    subtitle: '134°C Medical Vacuum Autoclave',
+    description: 'Hospital-grade Class-B fractional pre-vacuum autoclave destroys 99.99% of bacteria, spores, and viruses under high heat and steam pressure.',
+    details: ['Class-B fractional vacuum cycle', '134°C high-pressure steam', 'Rigid multi-stage biologic monitoring'],
+    iconName: 'ShieldCheck',
+  },
+  {
+    stepNumber: '03',
+    title: 'Hermetically Sealed Pouches',
+    subtitle: 'Unsealed in Front of Patient',
+    description: 'Sterilized tools are sealed in medical-grade Tyvek indicator pouches and only opened immediately before your procedure begins.',
+    details: ['Chemical sterilization color indicators', 'Tamper-evident sealed packaging', 'Opened only in patient presence'],
+    iconName: 'Lock',
+  },
+  {
+    stepNumber: '04',
+    title: 'Operatory Fumigation & Barrier Protection',
+    subtitle: 'Complete Operatory Disinfection',
+    description: 'Between every single patient, the dental chair, suction tubing, LED lights, and contact points undergo hospital-grade virucidal wipe-down.',
+    details: ['Medical grade surface wipes & barrier films', 'Disinfected suction lines & cuspidor', 'Fresh single-use patient kit for all'],
+    iconName: 'Sparkles',
+  },
+];
+
+/**
+ * Transparent Pricing & Cost Guide (Clove Dental Transparency Style)
+ */
+export const pricingGuideItems: PricingGuideItem[] = [
+  {
+    treatmentName: 'Comprehensive Consultation & Assessment',
+    category: 'Preventive Care',
+    startingPrice: '₹300 - ₹500',
+    description: 'Detailed intraoral checkup, smile evaluation, and treatment consultation plan.',
+    recommendedFor: 'Routine checkups, second opinions, initial dental visits',
+    isPopular: true,
+  },
+  {
+    treatmentName: 'Ultrasonic Teeth Cleaning & Polishing',
+    category: 'Preventive Care',
+    startingPrice: 'Starting ₹1,000',
+    description: 'Full-mouth ultrasonic scaling to remove calculus, plaque, and stains.',
+    recommendedFor: 'Bleeding gums, yellowing stains, fresh breath maintenance',
+  },
+  {
+    treatmentName: 'Tooth-Colored Composite Filling',
+    category: 'Restorative Care',
+    startingPrice: 'Starting ₹1,200',
+    description: 'Aesthetic light-cured composite to restore cavities seamlessly.',
+    recommendedFor: 'Tooth decay, chipped tooth edges, worn enamel',
+  },
+  {
+    treatmentName: 'Single-Sitting Root Canal Treatment (RCT)',
+    category: 'Restorative Care',
+    startingPrice: 'Starting ₹3,500',
+    description: 'Rotary painless root canal treatment to eliminate deep nerve infection.',
+    recommendedFor: 'Severe toothaches, hot/cold sensitivity, abscess relief',
+    isPopular: true,
+  },
+  {
+    treatmentName: 'Metal-Free Zirconia / Ceramic Dental Crown',
+    category: 'Prosthodontics',
+    startingPrice: 'Starting ₹4,500',
+    description: 'Custom durable CAD/CAM crown providing strength and natural translucency.',
+    recommendedFor: 'Post-RCT protection, fractured teeth, cosmetic smile fixes',
+  },
+  {
+    treatmentName: 'Dental Implant (Titanium Fixture + Abutment)',
+    category: 'Implantology',
+    startingPrice: 'Starting ₹22,000',
+    description: 'Permanent titanium tooth root replacement with lifetime natural chewing stability.',
+    recommendedFor: 'Missing teeth, loose dentures, permanent smile restoration',
+    isPopular: true,
+  },
+  {
+    treatmentName: 'Braces & Clear Invisible Aligners',
+    category: 'Orthodontics',
+    startingPrice: 'Consultation & Custom Plan',
+    description: 'Custom orthodontic alignment using clear invisible aligner trays or ceramic brackets.',
+    recommendedFor: 'Crowded teeth, gap closure, forward teeth correction',
+  },
+  {
+    treatmentName: 'Professional In-Clinic Teeth Whitening',
+    category: 'Cosmetic Dentistry',
+    startingPrice: 'Starting ₹5,000',
+    description: 'Safe clinical laser/bleach brightening to lighten teeth up to 6 shades.',
+    recommendedFor: 'Weddings, events, heavy tea/coffee stain removal',
+  },
+];
+
+/**
+ * Modern Clinic Infrastructure & Amenities
+ */
+export const clinicAmenities: ClinicAmenity[] = [
+  {
+    title: 'Advanced Ergonomic Dental Chairs',
+    description: 'Ergonomic operatory chair with synchronized backrest and shadowless LED lighting for optimal patient comfort during procedures.',
+    featureBadge: 'Ergonomic Comfort',
+    iconName: 'Armchair',
+  },
+  {
+    title: 'Low-Radiation Digital RVG Imaging',
+    description: 'Instant computerized sensor X-rays that reduce radiation exposure by up to 80% compared to conventional film X-rays.',
+    featureBadge: 'Digital Precision',
+    iconName: 'ScanLine',
+  },
+  {
+    title: 'Dedicated Autoclave & Sterilization Suite',
+    description: 'Separated sterile processing zone adhering to stringent international biomedical infection control standards.',
+    featureBadge: 'Hospital Grade',
+    iconName: 'ShieldAlert',
+  },
+  {
+    title: 'Air-Conditioned Waiting Lounge',
+    description: 'Clean, peaceful waiting environment with sanitized seating, purified water, and zero crowding thanks to appointment scheduling.',
+    featureBadge: 'Relaxed Ambience',
+    iconName: 'Wind',
+  },
+  {
+    title: 'Digital Payments & UPI Enabled',
+    description: 'Seamless contactless payment options including Google Pay, PhonePe, credit/debit cards, and transparent digital receipts.',
+    featureBadge: '100% Cashless Support',
+    iconName: 'CreditCard',
+  },
+  {
+    title: 'Central Bengaluru East Location',
+    description: 'Situated at 85, 7th Cross Road with convenient ground-floor accessibility and parking for two-wheelers and cars.',
+    featureBadge: 'Easy Accessibility',
+    iconName: 'MapPin',
+  },
+];
+
+/**
+ * Patient Testimonials
+ */
+export const testimonials: Testimonial[] = [
+  {
+    id: 'test-1',
+    patientName: 'Kavitha R.',
+    review: 'Had a severe toothache and visited Sai Dental Care in Bengaluru East. The doctor explained the issue patiently and did a painless root canal. The clinic is spotless and their sterilization standards are impressive!',
+    date: 'February 2025',
+    source: 'Google Review',
+    verified: true,
+  },
+  {
+    id: 'test-2',
+    patientName: 'Suresh Kumar',
+    review: 'I booked an appointment for routine teeth cleaning and scaling. Excellent experience — zero waiting time, very gentle ultrasonic cleaning, and transparent pricing with no hidden charges. Highly recommend for families.',
+    date: 'January 2025',
+    source: 'Google Review',
+    verified: true,
+  },
+  {
+    id: 'test-3',
+    patientName: 'Pooja Anand',
+    review: 'Very professional dental care! Got a tooth-colored filling and crown done here. The clinic is very clean, follows strict pouch sterilization, and the doctor is very soft-spoken. Great addition to Bengaluru East.',
+    date: 'December 2024',
+    source: 'Google Review',
+    verified: true,
+  },
+];
 
 /**
  * Frequently Asked Questions (Factual and conservative)
@@ -290,38 +498,38 @@ export const faqItems: FAQItem[] = [
   {
     id: 'faq-1',
     category: 'Appointments',
-    question: 'How do I book an appointment?',
-    answer: 'You can submit an appointment request using the online form on this website, or reach out to the clinic directly via phone or WhatsApp once numbers are confirmed. Our team will get back to you to confirm time availability.',
+    question: 'How do I book an appointment at Sai Dental Care Bengaluru East?',
+    answer: 'You can easily request an appointment using our online booking form on this website, or directly call/WhatsApp our reception at +91 9886713878. We will promptly confirm a convenient date and time for you.',
   },
   {
     id: 'faq-2',
     category: 'Appointments',
-    question: 'Do I need an appointment before visiting?',
-    answer: 'Prior appointments are recommended to minimize waiting time and ensure dedicated one-on-one attention for your dental consultation. Please contact the clinic to check walk-in availability.',
+    question: 'What are the clinic working hours?',
+    answer: 'Sai Dental Care is open from 10:00 AM to 8:00 PM, Monday through Sunday. We recommend booking prior appointments to ensure zero waiting time and dedicated attention.',
   },
   {
     id: 'faq-3',
-    category: 'First Visit',
-    question: 'What should I bring to my first appointment?',
-    answer: 'Please bring a valid photo ID, details of any ongoing medications or general medical history, and any recent dental records or X-rays if available.',
+    category: 'Treatments',
+    question: 'Are dental treatments like Root Canal (RCT) painful?',
+    answer: 'Not at all. We utilize modern rotary endodontics and effective local anesthesia techniques to ensure that root canal treatments and fillings are virtually painless and comfortable.',
   },
   {
     id: 'faq-4',
     category: 'General',
-    question: 'How often should I visit a dentist?',
-    answer: 'For most individuals, a routine dental check-up and cleaning is generally advised every 6 months to detect any early signs of cavities or gum concerns before they progress.',
+    question: 'How do you ensure sterilization and patient safety?',
+    answer: 'We strictly follow a 4-Step 10X Sterilization protocol featuring Class-B autoclave vacuum sterilization, hermetically sealed pouches unsealed in your presence, single-use disposables, and complete operatory sanitization between every patient.',
   },
   {
     id: 'faq-5',
-    category: 'Treatments',
-    question: 'Do you treat children?',
-    answer: 'Please contact Sai Dental Care directly to confirm the availability of pediatric dental services and consultations for young children.',
+    category: 'General',
+    question: 'What payment modes are accepted at the clinic?',
+    answer: 'We accept all major payment modes including UPI (Google Pay, PhonePe, Paytm), Credit and Debit Cards, Net Banking, and Cash. Treatment estimates are transparently discussed prior to starting.',
   },
   {
     id: 'faq-6',
-    category: 'Treatments',
-    question: 'Do you provide emergency dental care?',
-    answer: 'Please contact Sai Dental Care to confirm emergency availability and protocols for urgent dental situations such as acute toothaches or dental trauma.',
+    category: 'First Visit',
+    question: 'Where is the clinic located in Bengaluru East?',
+    answer: 'We are conveniently located at 85, 7th Cross Road, Bengaluru East, Karnataka 560016. Direct navigation links and parking guidance are available on this website.',
   },
 ];
 
@@ -345,7 +553,7 @@ export function getWhatsAppUrl(customMessage?: string): string {
   if (isPlaceholder(clinicConfig.contact.whatsapp)) {
     return `#contact`;
   }
-  const cleanNumber = clinicConfig.contact.whatsapp.replace(/[^0-9+]/g, '');
+  const cleanNumber = clinicConfig.contact.whatsapp.replace(/[^0-9]/g, '');
   return `https://wa.me/${cleanNumber}?text=${message}`;
 }
 

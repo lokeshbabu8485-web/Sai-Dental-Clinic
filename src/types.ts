@@ -48,6 +48,34 @@ export interface Treatment {
   benefits: string[];
   isConfirmed: boolean;
   iconName: string;
+  startingPrice?: string;
+  estimatedDuration?: string;
+  badge?: string;
+}
+
+export interface SterilizationStep {
+  stepNumber: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  details: string[];
+  iconName: string;
+}
+
+export interface PricingGuideItem {
+  treatmentName: string;
+  category: string;
+  startingPrice: string;
+  description: string;
+  recommendedFor: string;
+  isPopular?: boolean;
+}
+
+export interface ClinicAmenity {
+  title: string;
+  description: string;
+  featureBadge: string;
+  iconName: string;
 }
 
 export interface Testimonial {
@@ -57,6 +85,8 @@ export interface Testimonial {
   date: string;
   source: string;
   verified: boolean;
+  rating?: number;
+  treatment?: string;
 }
 
 export interface FAQItem {
